@@ -1,0 +1,14 @@
+{
+  "result": "nova:jetpack",
+  "shape": [
+    "n n",
+    "pgp",
+    "b b"
+  ],
+  "ingredients": {
+    "p": "nova:basic_power_cell",
+    "g": "nova:copper_gear",
+    "b": "minecraft:blaze_powder",
+    "n": "nova:netherite_plate"
+  }
+}

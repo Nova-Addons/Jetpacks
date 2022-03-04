@@ -1,0 +1,6 @@
+{
+  "jetpack": {
+    "item_type": "DAMAGEABLE",
+    "item": "attachment/jetpack"
+  }
+}
