@@ -6,7 +6,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import xyz.xenondevs.nova.data.config.NovaConfig
 import xyz.xenondevs.nova.item.behavior.Chargeable
-import xyz.xenondevs.nova.jetpacks.item.JetpackItem
+import xyz.xenondevs.nova.jetpacks.item.JETPACK_ITEM
+import xyz.xenondevs.nova.jetpacks.item.JetpackBehavior
 import xyz.xenondevs.nova.jetpacks.registry.Items.JETPACK
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
@@ -47,7 +48,7 @@ class JetpackFlyAbility(player: Player) : Ability(player) {
         val jetpackItem = jetpackItem
         
         if (jetpackItem != null) {
-            val chargeable = JetpackItem.getBehavior(Chargeable::class)!!
+            val chargeable = JETPACK_ITEM.getBehavior(Chargeable::class)!!
             val energyLeft = chargeable.getEnergy(jetpackItem)
             overlay.percentage = energyLeft / chargeable.maxEnergy.toDouble()
             
@@ -66,7 +67,7 @@ class JetpackFlyAbility(player: Player) : Ability(player) {
                 player.isFlying = false
                 player.allowFlight = false
             }
-        } else JetpackItem.setJetpack(player, false)
+        } else JetpackBehavior.setJetpack(player, false)
     }
     
     private fun playSound(location: Location) {

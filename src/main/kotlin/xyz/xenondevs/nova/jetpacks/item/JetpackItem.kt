@@ -18,22 +18,14 @@ import xyz.xenondevs.nova.player.equipment.EquipMethod
 
 private val MAX_ENERGY = NovaConfig["jetpacks:jetpack"].getLong("capacity")!!
 
-object JetpackItem : NovaItem() {
+val JETPACK_ITEM = NovaItem(Chargeable(MAX_ENERGY), Wearable(ArmorType.CHESTPLATE), JetpackBehavior)
+
+object JetpackBehavior : ItemBehavior() {
     
-    init {
-        behaviors += Chargeable(MAX_ENERGY)
-        behaviors += Wearable(ArmorType.CHESTPLATE)
-        behaviors += JetpackItemBehavior
-    }
-    
-    private object JetpackItemBehavior : ItemBehavior() {
-        
-        override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
-            if (event.equipMethod == EquipMethod.BREAK) {
-                event.isCancelled = true
-            } else setJetpack(player, equipped)
-        }
-        
+    override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
+        if (event.equipMethod == EquipMethod.BREAK) {
+            event.isCancelled = true
+        } else setJetpack(player, equipped)
     }
     
     fun setJetpack(player: Player, state: Boolean) {
