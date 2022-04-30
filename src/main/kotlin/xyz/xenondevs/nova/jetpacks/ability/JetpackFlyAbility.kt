@@ -12,12 +12,13 @@ import xyz.xenondevs.nova.jetpacks.registry.Items.JETPACK
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
 import xyz.xenondevs.nova.ui.overlay.ActionbarOverlayManager
+import xyz.xenondevs.nova.util.data.getFloat
 import xyz.xenondevs.nova.util.particleBuilder
 import xyz.xenondevs.nova.util.serverTick
 import xyz.xenondevs.particle.ParticleEffect
 
-private val ENERGY_PER_TICK = NovaConfig[JETPACK].getLong("energy_per_tick")!!
-private val FLY_SPEED = NovaConfig[JETPACK].getFloat("fly_speed")!!
+private val ENERGY_PER_TICK = NovaConfig[JETPACK].getLong("energy_per_tick")
+private val FLY_SPEED = NovaConfig[JETPACK].getFloat("fly_speed")
 
 class JetpackFlyAbility(player: Player) : Ability(player) {
     
