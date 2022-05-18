@@ -3,6 +3,7 @@ package xyz.xenondevs.nova.jetpacks.item
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import xyz.xenondevs.nova.data.config.NovaConfig
+import xyz.xenondevs.nova.data.config.configReloadable
 import xyz.xenondevs.nova.item.NovaItem
 import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.item.behavior.ItemBehavior
@@ -16,7 +17,7 @@ import xyz.xenondevs.nova.player.equipment.ArmorEquipEvent
 import xyz.xenondevs.nova.player.equipment.ArmorType
 import xyz.xenondevs.nova.player.equipment.EquipMethod
 
-private val MAX_ENERGY = NovaConfig["jetpacks:jetpack"].getLong("capacity")
+private val MAX_ENERGY = configReloadable { NovaConfig["jetpacks:jetpack"].getLong("capacity") }
 
 val JETPACK_ITEM = NovaItem(Chargeable(MAX_ENERGY), Wearable(ArmorType.CHESTPLATE), JetpackBehavior)
 

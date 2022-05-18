@@ -5,6 +5,7 @@ import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import xyz.xenondevs.nova.data.config.NovaConfig
+import xyz.xenondevs.nova.data.config.configReloadable
 import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.jetpacks.item.JETPACK_ITEM
 import xyz.xenondevs.nova.jetpacks.item.JetpackBehavior
@@ -16,9 +17,10 @@ import xyz.xenondevs.nova.util.data.getFloat
 import xyz.xenondevs.nova.util.particleBuilder
 import xyz.xenondevs.nova.util.serverTick
 import xyz.xenondevs.particle.ParticleEffect
+import kotlin.math.min
 
-private val ENERGY_PER_TICK = NovaConfig[JETPACK].getLong("energy_per_tick")
-private val FLY_SPEED = NovaConfig[JETPACK].getFloat("fly_speed")
+private val ENERGY_PER_TICK by configReloadable { NovaConfig[JETPACK].getLong("energy_per_tick") }
+private val FLY_SPEED by configReloadable { NovaConfig[JETPACK].getFloat("fly_speed") }
 
 class JetpackFlyAbility(player: Player) : Ability(player) {
     
@@ -69,6 +71,10 @@ class JetpackFlyAbility(player: Player) : Ability(player) {
                 player.allowFlight = false
             }
         } else JetpackBehavior.setJetpack(player, false)
+    }
+    
+    override fun reload() {
+        player.flySpeed = FLY_SPEED
     }
     
     private fun playSound(location: Location) {
