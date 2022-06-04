@@ -6,7 +6,7 @@ import xyz.xenondevs.nova.player.ability.AbilityTypeRegistry
 
 object Abilities {
     
-    val JETPACK_FLY = AbilityTypeRegistry.registerAbility(JETPACKS, "jetpack_fly", ::JetpackFlyAbility)
+    val JETPACK_FLY = AbilityTypeRegistry.register(JETPACKS, "jetpack_fly", ::JetpackFlyAbility)
     
     fun init() = Unit
     

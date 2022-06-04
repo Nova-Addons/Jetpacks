@@ -2,6 +2,7 @@ package xyz.xenondevs.nova.jetpacks
 
 import xyz.xenondevs.nova.addon.Addon
 import xyz.xenondevs.nova.jetpacks.registry.Abilities
+import xyz.xenondevs.nova.jetpacks.registry.Attachments
 import xyz.xenondevs.nova.jetpacks.registry.Items
 import java.util.logging.Logger
 
@@ -16,6 +17,7 @@ class Jetpacks : Addon() {
         
         Items.init()
         Abilities.init()
+        Attachments.init()
     }
     
     override fun onEnable() = Unit

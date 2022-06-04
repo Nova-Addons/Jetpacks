@@ -9,6 +9,7 @@ import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.item.behavior.ItemBehavior
 import xyz.xenondevs.nova.item.behavior.Wearable
 import xyz.xenondevs.nova.jetpacks.registry.Abilities
+import xyz.xenondevs.nova.jetpacks.registry.Attachments
 import xyz.xenondevs.nova.jetpacks.registry.Items.JETPACK
 import xyz.xenondevs.nova.player.ability.AbilityManager
 import xyz.xenondevs.nova.player.attachment.Attachment
@@ -31,10 +32,10 @@ object JetpackBehavior : ItemBehavior() {
     
     fun setJetpack(player: Player, state: Boolean) {
         if (state) {
-            Attachment("Jetpack", player.uniqueId, JETPACK.createItemStack(), true)
+            AttachmentManager.addAttachment(player, Attachments.JETPACK_ATTACHMENT)
             AbilityManager.giveAbility(player, Abilities.JETPACK_FLY)
         } else {
-            AttachmentManager.getAttachment(player.uniqueId, "Jetpack")?.remove()
+            AttachmentManager.removeAttachment(player, Attachments.JETPACK_ATTACHMENT)
             AbilityManager.takeAbility(player, Abilities.JETPACK_FLY)
         }
     }
