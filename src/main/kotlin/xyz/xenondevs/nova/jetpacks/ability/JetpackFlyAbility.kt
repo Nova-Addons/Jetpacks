@@ -3,38 +3,33 @@ package xyz.xenondevs.nova.jetpacks.ability
 import org.bukkit.Location
 import org.bukkit.Sound
 import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemStack
-import xyz.xenondevs.nova.data.config.NovaConfig
-import xyz.xenondevs.nova.data.config.configReloadable
+import xyz.xenondevs.nova.data.config.ValueReloadable
 import xyz.xenondevs.nova.item.behavior.Chargeable
-import xyz.xenondevs.nova.jetpacks.item.JETPACK_ITEM
-import xyz.xenondevs.nova.jetpacks.item.JetpackBehavior
-import xyz.xenondevs.nova.jetpacks.registry.Items.JETPACK
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
+import xyz.xenondevs.nova.player.ability.AbilityManager
 import xyz.xenondevs.nova.ui.overlay.ActionbarOverlayManager
-import xyz.xenondevs.nova.util.data.getFloat
+import xyz.xenondevs.nova.util.item.novaMaterial
 import xyz.xenondevs.nova.util.particleBuilder
 import xyz.xenondevs.nova.util.serverTick
 import xyz.xenondevs.particle.ParticleEffect
-import kotlin.math.min
 
-private val ENERGY_PER_TICK by configReloadable { NovaConfig[JETPACK].getLong("energy_per_tick") }
-private val FLY_SPEED by configReloadable { NovaConfig[JETPACK].getFloat("fly_speed") }
-
-class JetpackFlyAbility(player: Player) : Ability(player) {
+class JetpackFlyAbility(player: Player, flySpeed: ValueReloadable<Float>, energyPerTick: ValueReloadable<Long>) : Ability(player) {
+    
+    private val flySpeed: Float by flySpeed
+    private val energyPerTick: Long by energyPerTick
     
     private val wasFlying = player.isFlying
     private val wasAllowFlight = player.allowFlight
     private val previousFlySpeed = player.flySpeed
     
     private val overlay = JetpackOverlay()
-    private val jetpackItem: ItemStack?
-        get() = player.equipment?.chestplate
+    private val jetpackItem by lazy { player.equipment?.chestplate }
+    private val novaItem by lazy { jetpackItem?.novaMaterial?.novaItem }
     
     init {
         player.isFlying = false
-        player.flySpeed = FLY_SPEED
+        player.flySpeed = this.flySpeed
         
         ActionbarOverlayManager.registerOverlay(player, overlay)
     }
@@ -49,32 +44,35 @@ class JetpackFlyAbility(player: Player) : Ability(player) {
     
     override fun handleTick() {
         val jetpackItem = jetpackItem
+        val novaItem = novaItem
+        if (jetpackItem == null || novaItem == null) {
+            AbilityManager.takeAbility(player, this)
+            return
+        }
         
-        if (jetpackItem != null) {
-            val chargeable = JETPACK_ITEM.getBehavior(Chargeable::class)!!
-            val energyLeft = chargeable.getEnergy(jetpackItem)
-            overlay.percentage = energyLeft / chargeable.maxEnergy.toDouble()
-            
-            if (energyLeft > ENERGY_PER_TICK) {
-                if (player.isFlying) {
-                    chargeable.addEnergy(jetpackItem, -ENERGY_PER_TICK)
-                    if (serverTick % 3 == 0) {
-                        val location = player.location
-                        playSound(location)
-                        spawnParticles(location)
-                    }
-                } else {
-                    player.allowFlight = true
+        val chargeable = novaItem.getBehavior(Chargeable::class)!!
+        val energyLeft = chargeable.getEnergy(jetpackItem)
+        overlay.percentage = energyLeft / chargeable.maxEnergy.toDouble()
+        
+        if (energyLeft > energyPerTick) {
+            if (player.isFlying) {
+                chargeable.addEnergy(jetpackItem, -energyPerTick)
+                if (serverTick % 3 == 0) {
+                    val location = player.location
+                    playSound(location)
+                    spawnParticles(location)
                 }
-            } else if (player.isFlying) {
-                player.isFlying = false
-                player.allowFlight = false
+            } else {
+                player.allowFlight = true
             }
-        } else JetpackBehavior.setJetpack(player, false)
+        } else if (player.isFlying) {
+            player.isFlying = false
+            player.allowFlight = false
+        }
     }
     
     override fun reload() {
-        player.flySpeed = FLY_SPEED
+        player.flySpeed = flySpeed
     }
     
     private fun playSound(location: Location) {

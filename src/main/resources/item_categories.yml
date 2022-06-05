@@ -1,6 +1,13 @@
-misc:
-  icon: nova:wrench
-  name: "menu.nova.items.category.misc"
-  priority: 5,
+jetpacks:
+  icon: jetpacks:ultimate_jetpack
+  name: "menu.jetpacks.items.category.jetpacks"
+  priority: 4
   items:
-    - jetpacks:jetpack
+    - jetpacks:basic_jetpack
+    - jetpacks:armored_basic_jetpack
+    - jetpacks:advanced_jetpack
+    - jetpacks:armored_advanced_jetpack
+    - jetpacks:elite_jetpack
+    - jetpacks:armored_elite_jetpack
+    - jetpacks:ultimate_jetpack
+    - jetpacks:armored_ultimate_jetpack

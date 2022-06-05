@@ -1,6 +1,34 @@
 {
-  "jetpack": {
-    "item_type": "DAMAGEABLE",
-    "item": "attachment/jetpack"
+  "basic_jetpack": {
+    "item_type": "damageable",
+    "item": "attachment/basic_jetpack"
+  },
+  "advanced_jetpack": {
+    "item_type": "damageable",
+    "item": "attachment/advanced_jetpack"
+  },
+  "elite_jetpack": {
+    "item_type": "damageable",
+    "item": "attachment/elite_jetpack"
+  },
+  "ultimate_jetpack": {
+    "item_type": "damageable",
+    "item": "attachment/ultimate_jetpack"
+  },
+  "armored_basic_jetpack": {
+    "item_material": "leather_chestplate",
+    "item": "item/armored_basic_jetpack"
+  },
+  "armored_advanced_jetpack": {
+    "item_material": "iron_chestplate",
+    "item": "item/armored_advanced_jetpack"
+  },
+  "armored_elite_jetpack": {
+    "item_material": "diamond_chestplate",
+    "item": "item/armored_elite_jetpack"
+  },
+  "armored_ultimate_jetpack": {
+    "item_material": "netherite_chestplate",
+    "item": "item/armored_ultimate_jetpack"
   }
 }
