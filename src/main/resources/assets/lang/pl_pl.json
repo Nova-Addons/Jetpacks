@@ -1,2 +1,7 @@
 {
+  "item.jetpacks.advanced_jetpack": "Zaawansowany Jetpack",
+  "item.jetpacks.elite_jetpack": "Elitarny Jetpack",
+  "item.jetpacks.ultimate_jetpack": "Najlepszy Jetpack",
+  "menu.jetpacks.items.category.jetpacks": "Jetpacki",
+  "item.jetpacks.basic_jetpack": "Zwykły Jetpack"
 }
