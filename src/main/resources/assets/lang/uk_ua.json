@@ -1,1 +1,11 @@
-{}
+{
+  "item.jetpacks.basic_jetpack": "Базовий реактивний ранець",
+  "item.jetpacks.advanced_jetpack": "Продвинутий реактивний ранець",
+  "item.jetpacks.elite_jetpack": "Елітний реактивний ранець",
+  "item.jetpacks.ultimate_jetpack": "Ультиматівний реактивний ранець",
+  "item.jetpacks.armored_basic_jetpack": "Бронеровений базовий реактивний ранець",
+  "item.jetpacks.armored_advanced_jetpack": "Бронеровиний Просунутий реактивний ранець",
+  "item.jetpacks.armored_elite_jetpack": "Бронеровоний елітний реактивний ранець",
+  "item.jetpacks.armored_ultimate_jetpack": "Бронерований Ультіматівний Реактивний ранець",
+  "menu.jetpacks.items.category.jetpacks": "Реактивний ранець"
+}
