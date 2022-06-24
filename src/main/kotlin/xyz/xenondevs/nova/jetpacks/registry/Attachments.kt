@@ -1,6 +1,6 @@
 package xyz.xenondevs.nova.jetpacks.registry
 
-import xyz.xenondevs.nova.jetpacks.JETPACKS
+import xyz.xenondevs.nova.jetpacks.Jetpacks
 import xyz.xenondevs.nova.material.ItemNovaMaterial
 import xyz.xenondevs.nova.player.attachment.AttachmentType
 import xyz.xenondevs.nova.player.attachment.AttachmentTypeRegistry
@@ -9,7 +9,7 @@ import xyz.xenondevs.nova.player.attachment.HideDownAttachment
 object Attachments {
     
     private fun registerJetpackAttachment(name: String, material: ItemNovaMaterial): AttachmentType<*> =
-        AttachmentTypeRegistry.register(JETPACKS, name) {
+        AttachmentTypeRegistry.register(Jetpacks, name) {
             HideDownAttachment(40f, it, material.clientsideProvider.get())
         }
     

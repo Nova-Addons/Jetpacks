@@ -7,12 +7,10 @@ import xyz.xenondevs.nova.jetpacks.registry.Items
 import java.util.logging.Logger
 
 lateinit var LOGGER: Logger
-lateinit var JETPACKS: Jetpacks
 
-class Jetpacks : Addon() {
+object Jetpacks : Addon() {
     
     override fun init() {
-        JETPACKS = this
         LOGGER = logger
         
         Items.init()

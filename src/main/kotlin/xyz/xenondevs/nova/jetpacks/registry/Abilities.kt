@@ -2,7 +2,7 @@ package xyz.xenondevs.nova.jetpacks.registry
 
 import xyz.xenondevs.nova.data.config.NovaConfig
 import xyz.xenondevs.nova.data.config.configReloadable
-import xyz.xenondevs.nova.jetpacks.JETPACKS
+import xyz.xenondevs.nova.jetpacks.Jetpacks
 import xyz.xenondevs.nova.jetpacks.ability.JetpackFlyAbility
 import xyz.xenondevs.nova.player.ability.AbilityTypeRegistry
 import xyz.xenondevs.nova.util.data.getFloat
@@ -18,10 +18,10 @@ private val ULTIMATE_ENERGY_PER_TICK = configReloadable { NovaConfig["jetpacks:u
 
 object Abilities {
     
-    val BASIC_JETPACK_FLY = AbilityTypeRegistry.register(JETPACKS, "jetpack_fly") { JetpackFlyAbility(it, BASIC_FLY_SPEED, BASIC_ENERGY_PER_TICK) }
-    val ADVANCED_JETPACK_FLY = AbilityTypeRegistry.register(JETPACKS, "jetpack_fly") { JetpackFlyAbility(it, ADVANCED_FLY_SPEED, ADVANCED_ENERGY_PER_TICK) }
-    val ELITE_JETPACK_FLY = AbilityTypeRegistry.register(JETPACKS, "jetpack_fly") { JetpackFlyAbility(it, ELITE_FLY_SPEED, ELITE_ENERGY_PER_TICK) }
-    val ULTIMATE_JETPACK_FLY = AbilityTypeRegistry.register(JETPACKS, "jetpack_fly") { JetpackFlyAbility(it, ULTIMATE_FLY_SPEED, ULTIMATE_ENERGY_PER_TICK) }
+    val BASIC_JETPACK_FLY = AbilityTypeRegistry.register(Jetpacks, "jetpack_fly") { JetpackFlyAbility(it, BASIC_FLY_SPEED, BASIC_ENERGY_PER_TICK) }
+    val ADVANCED_JETPACK_FLY = AbilityTypeRegistry.register(Jetpacks, "jetpack_fly") { JetpackFlyAbility(it, ADVANCED_FLY_SPEED, ADVANCED_ENERGY_PER_TICK) }
+    val ELITE_JETPACK_FLY = AbilityTypeRegistry.register(Jetpacks, "jetpack_fly") { JetpackFlyAbility(it, ELITE_FLY_SPEED, ELITE_ENERGY_PER_TICK) }
+    val ULTIMATE_JETPACK_FLY = AbilityTypeRegistry.register(Jetpacks, "jetpack_fly") { JetpackFlyAbility(it, ULTIMATE_FLY_SPEED, ULTIMATE_ENERGY_PER_TICK) }
     
     fun init() = Unit
     
