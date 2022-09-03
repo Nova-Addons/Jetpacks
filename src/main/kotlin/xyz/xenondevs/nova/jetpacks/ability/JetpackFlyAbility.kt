@@ -8,7 +8,7 @@ import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
 import xyz.xenondevs.nova.player.ability.AbilityManager
-import xyz.xenondevs.nova.ui.overlay.ActionbarOverlayManager
+import xyz.xenondevs.nova.ui.overlay.actionbar.ActionbarOverlayManager
 import xyz.xenondevs.nova.util.item.novaMaterial
 import xyz.xenondevs.nova.util.particleBuilder
 import xyz.xenondevs.nova.util.serverTick

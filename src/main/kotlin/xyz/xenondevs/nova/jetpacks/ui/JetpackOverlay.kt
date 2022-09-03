@@ -2,8 +2,8 @@ package xyz.xenondevs.nova.jetpacks.ui
 
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.ComponentBuilder
-import xyz.xenondevs.nova.ui.overlay.ActionbarOverlay
-import xyz.xenondevs.nova.ui.overlay.MoveCharacters
+import xyz.xenondevs.nova.ui.overlay.actionbar.ActionbarOverlay
+import xyz.xenondevs.nova.ui.overlay.character.MoveCharacters
 
 class JetpackOverlay : ActionbarOverlay {
     
