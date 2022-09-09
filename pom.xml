@@ -12,8 +12,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spigot.version>1.19.2-R0.1-SNAPSHOT</spigot.version>
-        <nova.version>0.11-SNAPSHOT</nova.version>
-        <kotlin.version>1.7.0</kotlin.version>
+        <nova.version>0.11</nova.version>
+        <kotlin.version>1.7.10</kotlin.version>
         <dir>${project.build.directory}</dir>
     </properties>
 
@@ -38,7 +38,7 @@
     <dependencies>
         <dependency>
             <groupId>xyz.xenondevs.nova</groupId>
-            <artifactId>Nova</artifactId>
+            <artifactId>nova</artifactId>
             <version>${nova.version}</version>
             <scope>provided</scope>
         </dependency>
