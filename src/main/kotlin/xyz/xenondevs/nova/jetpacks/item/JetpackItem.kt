@@ -4,11 +4,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import xyz.xenondevs.nova.item.behavior.ItemBehavior
 import xyz.xenondevs.nova.jetpacks.JetpackTier
-import xyz.xenondevs.nova.jetpacks.ability.JetpackFlyAbility
 import xyz.xenondevs.nova.player.ability.AbilityManager
-import xyz.xenondevs.nova.player.ability.AbilityType
 import xyz.xenondevs.nova.player.attachment.AttachmentManager
-import xyz.xenondevs.nova.player.attachment.AttachmentType
 import xyz.xenondevs.nova.player.equipment.ArmorEquipEvent
 import xyz.xenondevs.nova.player.equipment.EquipMethod
 

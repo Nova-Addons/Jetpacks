@@ -52,7 +52,7 @@ class JetpackFlyAbility(player: Player, flySpeed: ValueReloadable<Float>, energy
         
         val chargeable = novaItem.getBehavior(Chargeable::class)!!
         val energyLeft = chargeable.getEnergy(jetpackItem)
-        overlay.percentage = energyLeft / chargeable.maxEnergy.toDouble()
+        overlay.percentage = energyLeft / chargeable.options.maxEnergy.toDouble()
         
         if (energyLeft > energyPerTick) {
             if (player.isFlying) {
