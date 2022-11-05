@@ -3,7 +3,7 @@ package xyz.xenondevs.nova.jetpacks.ability
 import org.bukkit.Location
 import org.bukkit.Sound
 import org.bukkit.entity.Player
-import xyz.xenondevs.nova.data.config.ValueReloadable
+import xyz.xenondevs.nova.data.provider.Provider
 import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
@@ -14,7 +14,7 @@ import xyz.xenondevs.nova.util.particleBuilder
 import xyz.xenondevs.nova.util.serverTick
 import xyz.xenondevs.particle.ParticleEffect
 
-class JetpackFlyAbility(player: Player, flySpeed: ValueReloadable<Float>, energyPerTick: ValueReloadable<Long>) : Ability(player) {
+class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
     
     private val flySpeed: Float by flySpeed
     private val energyPerTick: Long by energyPerTick
