@@ -1,6 +1,6 @@
 {
   "parent": "jetpacks:attachment/jetpack",
   "textures": {
-    "1": "jetpacks:attachment/ultimate_jetpack"
+    "1": "jetpacks:item/attachment/ultimate_jetpack"
   }
 }
