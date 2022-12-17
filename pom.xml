@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spigot.version>1.19.3-R0.1-SNAPSHOT</spigot.version>
-        <nova.version>0.12.7-SNAPSHOT</nova.version>
+        <nova.version>0.13-SNAPSHOT</nova.version>
         <kotlin.version>1.7.22</kotlin.version>
         <dir>${project.build.directory}</dir>
     </properties>
@@ -46,6 +46,7 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
             <version>${spigot.version}</version>
+            <classifier>remapped-mojang</classifier>
             <scope>provided</scope>
         </dependency>
     </dependencies>
