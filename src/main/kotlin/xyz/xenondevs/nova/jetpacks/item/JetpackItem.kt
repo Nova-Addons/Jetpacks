@@ -7,20 +7,13 @@ import xyz.xenondevs.nova.jetpacks.JetpackTier
 import xyz.xenondevs.nova.player.ability.AbilityManager
 import xyz.xenondevs.nova.player.attachment.AttachmentManager
 import xyz.xenondevs.nova.player.equipment.ArmorEquipEvent
-import xyz.xenondevs.nova.player.equipment.EquipMethod
 
 class JetpackBehavior(
     private val tier: JetpackTier
 ) : ItemBehavior() {
     
     override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
-        if (event.equipMethod == EquipMethod.BREAK) {
-            event.isCancelled = true
-        } else setJetpack(player, equipped)
-    }
-    
-    private fun setJetpack(player: Player, state: Boolean) {
-        if (state) {
+        if (equipped) {
             AttachmentManager.addAttachment(player, tier.attachmentType)
             AbilityManager.giveAbility(player, tier.abilityType)
         } else {

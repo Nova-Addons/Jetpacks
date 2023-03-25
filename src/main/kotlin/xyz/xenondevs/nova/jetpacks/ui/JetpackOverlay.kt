@@ -1,13 +1,13 @@
 package xyz.xenondevs.nova.jetpacks.ui
 
-import net.md_5.bungee.api.chat.BaseComponent
-import net.md_5.bungee.api.chat.ComponentBuilder
+import net.kyori.adventure.text.Component
 import xyz.xenondevs.nova.ui.overlay.actionbar.ActionbarOverlay
-import xyz.xenondevs.nova.ui.overlay.character.MoveCharacters
+import xyz.xenondevs.nova.util.component.adventure.font
+import xyz.xenondevs.nova.util.component.adventure.move
 
 class JetpackOverlay : ActionbarOverlay {
     
-    override var components: Array<BaseComponent> = getCurrentComponents()
+    override var component: Component = getCurrentComponent()
         private set
     
     var percentage: Double = 0.0
@@ -15,17 +15,18 @@ class JetpackOverlay : ActionbarOverlay {
             require(value in 0.0..1.0)
             if (field == value) return
             field = value
-            components = getCurrentComponents()
+            component = getCurrentComponent()
         }
     
-    private fun getCurrentComponents(): Array<BaseComponent> {
+    private fun getCurrentComponent(): Component {
         val stage = (percentage * 38).toInt()
         
-        return ComponentBuilder()
-            .append(MoveCharacters.getMovingComponent(95))
-            .append(('\uF000'.code + stage).toChar().toString())
-            .font("jetpacks:energy_bar")
-            .create()
+        return Component.text()
+            .move(95)
+            .append(
+                Component.text(('\uF000'.code + stage).toChar().toString())
+                    .font("jetpacks:energy_bar")
+            ).build()
     }
     
 }

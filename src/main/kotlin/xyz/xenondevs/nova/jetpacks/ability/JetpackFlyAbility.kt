@@ -4,8 +4,8 @@ import net.minecraft.core.particles.ParticleTypes
 import org.bukkit.Location
 import org.bukkit.Sound
 import org.bukkit.entity.Player
+import xyz.xenondevs.commons.provider.Provider
 import xyz.xenondevs.nmsutils.particle.ParticleBuilder
-import xyz.xenondevs.nova.data.provider.Provider
 import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
