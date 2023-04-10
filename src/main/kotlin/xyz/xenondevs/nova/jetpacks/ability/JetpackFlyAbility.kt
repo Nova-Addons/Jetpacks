@@ -1,18 +1,20 @@
 package xyz.xenondevs.nova.jetpacks.ability
 
+import net.minecraft.core.particles.ParticleTypes
 import org.bukkit.Location
 import org.bukkit.Sound
 import org.bukkit.entity.Player
-import xyz.xenondevs.nova.data.provider.Provider
+import xyz.xenondevs.commons.provider.Provider
+import xyz.xenondevs.nmsutils.particle.ParticleBuilder
 import xyz.xenondevs.nova.item.behavior.Chargeable
 import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
 import xyz.xenondevs.nova.player.ability.AbilityManager
 import xyz.xenondevs.nova.ui.overlay.actionbar.ActionbarOverlayManager
-import xyz.xenondevs.nova.util.item.novaMaterial
-import xyz.xenondevs.nova.util.particleBuilder
+import xyz.xenondevs.nova.util.MINECRAFT_SERVER
+import xyz.xenondevs.nova.util.broadcast
+import xyz.xenondevs.nova.util.item.novaItem
 import xyz.xenondevs.nova.util.serverTick
-import xyz.xenondevs.particle.ParticleEffect
 
 class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
     
@@ -25,7 +27,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     
     private val overlay = JetpackOverlay()
     private val jetpackItem by lazy { player.equipment?.chestplate }
-    private val novaItem by lazy { jetpackItem?.novaMaterial?.novaItem }
+    private val novaItem by lazy { jetpackItem?.novaItem }
     
     init {
         player.isFlying = false
@@ -89,9 +91,8 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     }
     
     private fun spawnParticle(location: Location) {
-        particleBuilder(ParticleEffect.FLAME, location) {
-            offsetY(-0.5f)
-        }.display()
+        val packet = ParticleBuilder(ParticleTypes.FLAME, location).offsetY(-0.5f).build()
+        MINECRAFT_SERVER.playerList.broadcast(location, 32.0, packet)
     }
     
 }
