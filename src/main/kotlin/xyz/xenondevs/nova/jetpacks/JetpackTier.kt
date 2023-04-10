@@ -1,17 +1,17 @@
 package xyz.xenondevs.nova.jetpacks
 
+import xyz.xenondevs.nova.item.NovaItem
 import xyz.xenondevs.nova.jetpacks.ability.JetpackFlyAbility
 import xyz.xenondevs.nova.jetpacks.registry.Abilities
 import xyz.xenondevs.nova.jetpacks.registry.Attachments
 import xyz.xenondevs.nova.jetpacks.registry.Items
-import xyz.xenondevs.nova.material.ItemNovaMaterial
 import xyz.xenondevs.nova.player.ability.AbilityType
 import xyz.xenondevs.nova.player.attachment.AttachmentType
 
 enum class JetpackTier(
     lazyAbilityType: () -> AbilityType<JetpackFlyAbility>,
     lazyAttachmentType: () -> AttachmentType<*>,
-    lazyMaterials: () -> List<ItemNovaMaterial>
+    lazyMaterials: () -> List<NovaItem>
 ) {
     
     BASIC({ Abilities.BASIC_JETPACK_FLY }, { Attachments.BASIC_JETPACK }, { listOf(Items.BASIC_JETPACK, Items.ARMORED_BASIC_JETPACK) }),

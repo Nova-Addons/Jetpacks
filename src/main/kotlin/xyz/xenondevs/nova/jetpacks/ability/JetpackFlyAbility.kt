@@ -11,9 +11,9 @@ import xyz.xenondevs.nova.jetpacks.ui.JetpackOverlay
 import xyz.xenondevs.nova.player.ability.Ability
 import xyz.xenondevs.nova.player.ability.AbilityManager
 import xyz.xenondevs.nova.ui.overlay.actionbar.ActionbarOverlayManager
+import xyz.xenondevs.nova.util.MINECRAFT_SERVER
 import xyz.xenondevs.nova.util.broadcast
-import xyz.xenondevs.nova.util.item.novaMaterial
-import xyz.xenondevs.nova.util.minecraftServer
+import xyz.xenondevs.nova.util.item.novaItem
 import xyz.xenondevs.nova.util.serverTick
 
 class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
@@ -27,7 +27,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     
     private val overlay = JetpackOverlay()
     private val jetpackItem by lazy { player.equipment?.chestplate }
-    private val novaItem by lazy { jetpackItem?.novaMaterial?.novaItem }
+    private val novaItem by lazy { jetpackItem?.novaItem }
     
     init {
         player.isFlying = false
@@ -92,7 +92,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     
     private fun spawnParticle(location: Location) {
         val packet = ParticleBuilder(ParticleTypes.FLAME, location).offsetY(-0.5f).build()
-        minecraftServer.playerList.broadcast(location, 32.0, packet)
+        MINECRAFT_SERVER.playerList.broadcast(location, 32.0, packet)
     }
     
 }
