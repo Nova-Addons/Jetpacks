@@ -6,7 +6,7 @@
 
     <artifactId>Jetpacks</artifactId>
     <groupId>xyz.xenondevs.nova</groupId>
-    <version>0.1.7</version>
+    <version>0.1.8-RC</version>
     <packaging>jar</packaging>
 
     <properties>
