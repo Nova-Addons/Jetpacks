@@ -6,13 +6,13 @@
 
     <artifactId>Jetpacks</artifactId>
     <groupId>xyz.xenondevs.nova</groupId>
-    <version>0.1.8</version>
+    <version>0.1.9-RC.1</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.19.4-R0.1-SNAPSHOT</spigot.version>
-        <nova.version>0.13</nova.version>
+        <spigot.version>1.20-R0.1-SNAPSHOT</spigot.version>
+        <nova.version>0.14-alpha.1</nova.version>
         <kotlin.version>1.8.20</kotlin.version>
         <dir>${project.build.directory}</dir>
     </properties>
