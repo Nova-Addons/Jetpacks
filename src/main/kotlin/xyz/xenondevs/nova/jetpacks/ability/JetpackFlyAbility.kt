@@ -65,6 +65,8 @@ class JetpackFlyAbility(
 
         if (isValidGameMode()) {
             player.flySpeed = flySpeed
+        } else {
+            player.flySpeed = previousFlySpeed
         }
         
         val chargeable = novaItem.getBehavior(Chargeable::class)!!
