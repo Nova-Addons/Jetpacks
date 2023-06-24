@@ -71,7 +71,7 @@ class JetpackFlyAbility(
         val energyLeft = chargeable.getEnergy(jetpackItem)
         overlay.percentage = energyLeft / chargeable.options.maxEnergy.toDouble()
         
-        if (energyLeft > energyPerTick) {
+        if (energyLeft > energyPerTick || isValidGameMode().not()) {
             if (player.isFlying) {
                 if (isValidGameMode()) {
                     chargeable.addEnergy(jetpackItem, -energyPerTick)
