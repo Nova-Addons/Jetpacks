@@ -63,11 +63,9 @@ class JetpackFlyAbility(
             return
         }
 
-        if (isValidGameMode().not()) {
-            return
+        if (isValidGameMode()) {
+            player.flySpeed = flySpeed
         }
-
-        player.flySpeed = flySpeed
         
         val chargeable = novaItem.getBehavior(Chargeable::class)!!
         val energyLeft = chargeable.getEnergy(jetpackItem)
@@ -75,7 +73,10 @@ class JetpackFlyAbility(
         
         if (energyLeft > energyPerTick) {
             if (player.isFlying) {
-                chargeable.addEnergy(jetpackItem, -energyPerTick)
+                if (isValidGameMode()) {
+                    chargeable.addEnergy(jetpackItem, -energyPerTick)
+                }
+
                 if (serverTick % 3 == 0) {
                     val location = player.location
                     playSound(location)
@@ -84,7 +85,7 @@ class JetpackFlyAbility(
             } else {
                 player.allowFlight = true
             }
-        } else if (player.isFlying) {
+        } else if (player.isFlying && isValidGameMode()) {
             player.isFlying = false
             player.allowFlight = false
         }
