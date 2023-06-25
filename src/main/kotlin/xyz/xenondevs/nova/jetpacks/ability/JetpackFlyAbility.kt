@@ -23,6 +23,7 @@ private val IGNORED_GAME_MODES = configReloadable {
     val modesRaw = NovaConfig["jetpacks:config"].getStringList("ignored_game_mode")
     GameMode.values().filter { gameMode -> modesRaw.any { it.equals(gameMode.name, ignoreCase = true) } }
 }
+
 class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
     
     private val flySpeed: Float by flySpeed
@@ -38,7 +39,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     private val novaItem by lazy { jetpackItem?.novaItem }
     
     init {
-        if(isValidGameMode()) {
+        if (isValidGameMode()) {
             player.isFlying = false
             player.flySpeed = this.flySpeed
         }
@@ -47,7 +48,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     }
     
     override fun handleRemove() {
-        if(isValidGameMode()) {
+        if (isValidGameMode()) {
             player.allowFlight = wasAllowFlight
             player.isFlying = wasFlying
             player.flySpeed = previousFlySpeed
@@ -95,7 +96,7 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     }
     
     override fun reload() {
-        if(isValidGameMode()) {
+        if (isValidGameMode()) {
             player.flySpeed = flySpeed
         }
     }
