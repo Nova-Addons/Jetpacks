@@ -24,38 +24,38 @@ private val IGNORED_GAME_MODES = configReloadable {
     GameMode.values().filter { gameMode -> modesRaw.any { it.equals(gameMode.name, ignoreCase = true) } }
 }
 class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
-
+    
     private val flySpeed: Float by flySpeed
     private val energyPerTick: Long by energyPerTick
     private val ignoredGameModes: List<GameMode> by IGNORED_GAME_MODES
-
+    
     private val wasFlying = player.isFlying
     private val wasAllowFlight = player.allowFlight
     private val previousFlySpeed = player.flySpeed
-
+    
     private val overlay = JetpackOverlay()
     private val jetpackItem by lazy { player.equipment?.chestplate }
     private val novaItem by lazy { jetpackItem?.novaItem }
-
+    
     init {
         if(isValidGameMode()) {
             player.isFlying = false
             player.flySpeed = this.flySpeed
         }
-
+        
         ActionbarOverlayManager.registerOverlay(player, overlay)
     }
-
+    
     override fun handleRemove() {
         if(isValidGameMode()) {
             player.allowFlight = wasAllowFlight
             player.isFlying = wasFlying
             player.flySpeed = previousFlySpeed
         }
-
+        
         ActionbarOverlayManager.unregisterOverlay(player, overlay)
     }
-
+    
     override fun handleTick() {
         val jetpackItem = jetpackItem
         val novaItem = novaItem
@@ -63,23 +63,23 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
             AbilityManager.takeAbility(player, this)
             return
         }
-
+        
         if (isValidGameMode()) {
             player.flySpeed = flySpeed
         } else {
             player.flySpeed = previousFlySpeed
         }
-
+        
         val chargeable = novaItem.getBehavior(Chargeable::class)!!
         val energyLeft = chargeable.getEnergy(jetpackItem)
         overlay.percentage = energyLeft / chargeable.options.maxEnergy.toDouble()
-
+        
         if (energyLeft > energyPerTick || !isValidGameMode()) {
             if (player.isFlying) {
                 if (isValidGameMode()) {
                     chargeable.addEnergy(jetpackItem, -energyPerTick)
                 }
-
+                
                 if (serverTick % 3 == 0) {
                     val location = player.location
                     playSound(location)
@@ -93,17 +93,17 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
             player.allowFlight = false
         }
     }
-
+    
     override fun reload() {
         if(isValidGameMode()) {
             player.flySpeed = flySpeed
         }
     }
-
+    
     private fun playSound(location: Location) {
         location.world!!.playSound(location, Sound.BLOCK_FIRE_EXTINGUISH, 0.2f, 5f)
     }
-
+    
     private fun spawnParticles(location: Location) {
         location.pitch = 0f
         location.y += 0.5
@@ -112,12 +112,12 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
         location.yaw -= 70
         spawnParticle(location.clone().add(location.direction.multiply(0.5)))
     }
-
+    
     private fun spawnParticle(location: Location) {
         val packet = ParticleBuilder(ParticleTypes.FLAME, location).offsetY(-0.5f).build()
         MINECRAFT_SERVER.playerList.broadcast(location, 32.0, packet)
     }
-
+    
     private fun isValidGameMode(): Boolean = player.gameMode !in ignoredGameModes
-
+    
 }
