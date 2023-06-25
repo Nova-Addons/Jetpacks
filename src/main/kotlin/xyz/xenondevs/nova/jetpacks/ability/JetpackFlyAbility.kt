@@ -19,8 +19,8 @@ import xyz.xenondevs.nova.util.broadcast
 import xyz.xenondevs.nova.util.item.novaItem
 import xyz.xenondevs.nova.util.serverTick
 
-private val IGNORED_GAME_MODES = configReloadable {
-    val modesRaw = NovaConfig["jetpacks:config"].getStringList("ignored_game_mode")
+private val IGNORED_GAME_MODES by configReloadable {
+    val modesRaw = NovaConfig["jetpacks:config"].getStringList("ignored_game_modes")
     GameMode.values().filter { gameMode -> modesRaw.any { it.equals(gameMode.name, ignoreCase = true) } }
 }
 
@@ -28,7 +28,6 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
     
     private val flySpeed: Float by flySpeed
     private val energyPerTick: Long by energyPerTick
-    private val ignoredGameModes: List<GameMode> by IGNORED_GAME_MODES
     
     private val wasFlying = player.isFlying
     private val wasAllowFlight = player.allowFlight
@@ -119,6 +118,6 @@ class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick
         MINECRAFT_SERVER.playerList.broadcast(location, 32.0, packet)
     }
     
-    private fun isValidGameMode(): Boolean = player.gameMode !in ignoredGameModes
+    private fun isValidGameMode(): Boolean = player.gameMode !in IGNORED_GAME_MODES
     
 }
