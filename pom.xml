@@ -6,14 +6,14 @@
 
     <artifactId>Jetpacks</artifactId>
     <groupId>xyz.xenondevs.nova</groupId>
-    <version>0.1.9-RC.1</version>
+    <version>0.1.9</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.20-R0.1-SNAPSHOT</spigot.version>
-        <nova.version>0.14-alpha.1</nova.version>
-        <kotlin.version>1.8.20</kotlin.version>
+        <spigot.version>1.20.1-R0.1-SNAPSHOT</spigot.version>
+        <nova.version>0.14</nova.version>
+        <kotlin.version>1.8.22</kotlin.version>
         <dir>${project.build.directory}</dir>
     </properties>
 
@@ -40,13 +40,6 @@
             <groupId>xyz.xenondevs.nova</groupId>
             <artifactId>nova</artifactId>
             <version>${nova.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>${spigot.version}</version>
-            <classifier>remapped-mojang</classifier>
             <scope>provided</scope>
         </dependency>
     </dependencies>
