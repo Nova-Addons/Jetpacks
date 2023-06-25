@@ -19,14 +19,15 @@ import xyz.xenondevs.nova.util.broadcast
 import xyz.xenondevs.nova.util.item.novaItem
 import xyz.xenondevs.nova.util.serverTick
 
+private val IGNORED_GAME_MODES = configReloadable {
+    val modesRaw = NovaConfig["jetpacks:config"].getStringList("ignored_game_mode")
+    GameMode.values().filter { gameMode -> modesRaw.any { it.equals(gameMode.name, ignoreCase = true) } }
+}
 class JetpackFlyAbility(player: Player, flySpeed: Provider<Float>, energyPerTick: Provider<Long>) : Ability(player) {
 
     private val flySpeed: Float by flySpeed
     private val energyPerTick: Long by energyPerTick
-    private val ignoredGameModes: List<GameMode> by configReloadable {
-        val modesRaw = NovaConfig["jetpacks:config"].getStringList("ignored_game_modes")
-        GameMode.values().filter { gameMode -> modesRaw.any { it.equals(gameMode.name, ignoreCase = true) } }
-    }
+    private val ignoredGameModes: List<GameMode> by IGNORED_GAME_MODES
 
     private val wasFlying = player.isFlying
     private val wasAllowFlight = player.allowFlight
